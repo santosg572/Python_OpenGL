@@ -1,19 +1,30 @@
-import OpenGL
-import OpenGL.GL
-import OpenGL.GLUT
-import OpenGL.GLU
-print("Imports successful!")
+from OpenGL.GL import *
+from OpenGL.GLUT import *
+from OpenGL.GLU import *
 
-def showScreen():
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) # Remove everything from screen 
+def myInit():
+    glClearColor(1.0, 1.0, 0.0, 1.0) 
+    glColor3f(0.2, 0.5, 0.4)
+    glPointSize(10.0)
+    gluOrtho2D(0, 500, 0, 500)
 
-glutInit() # Initialize a glut instance which will allow us to customize our window
-glutInitDisplayMode(GLUT_RGBA) # Set the display mode to be colored
-glutInitWindowSize(500, 500)   # Set the width and height of your window
-glutInitWindowPosition(0, 0)   # Set the position at which this windows should appear
-wind = glutCreateWindow("OpenGL Coding Practice") # Give your window a title
-glutDisplayFunc(showScreen)  # Tell OpenGL to call the showScreen method continuously
-glutIdleFunc(showScreen)     # Draw any graphics or shapes in the showScreen functio
-glutMainLoop()  #
+def display():
+    glClear(GL_COLOR_BUFFER_BIT)
 
+    glBegin(GL_POINTS)
+    glVertex2f(100, 100)
+    glVertex2f(300, 200)
+    glEnd()
+
+    glFlush()
+
+
+glutInit()
+glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB)   
+glutInitWindowSize(500, 500)  
+glutInitWindowPosition(100, 100)  
+glutCreateWindow("My OpenGL Code")
+myInit()
+glutDisplayFunc(display) 
+glutMainLoop()
 
